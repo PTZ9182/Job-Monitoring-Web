@@ -3,6 +3,7 @@
 ## Tim Pengembang
 - Prastia Zaman
 - Suryana
+- Dyan
 - [Tambahkan anggota lainnya di sini]
 
 ## Deskripsi Aplikasi
