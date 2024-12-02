@@ -6,8 +6,8 @@
 - Dyan
 - [Tambahkan anggota lainnya di sini]
 
-## Deskripsi Aplikasi
-**JobMonitoring** adalah sebuah aplikasi web yang dibuat untuk memantau pekerjaan pegawai. Aplikasi ini memungkinkan kita melihat pekerjaan apa saja yang sedang dikerjakan oleh pegawai, serta seberapa jauh progres dari pekerjaan tersebut. Aplikasi ini memiliki dua tipe akun pengguna:
+## Deskripsi Web
+**JobMonitoring** adalah sebuah aplikasi web yang dibuat untuk memantau pekerjaan pegawai. Website ini memungkinkan kita melihat pekerjaan apa saja yang sedang dikerjakan oleh pegawai, serta seberapa jauh progres dari pekerjaan tersebut. Website ini memiliki dua tipe akun pengguna:
 
 1. **Admin**: 
    - Dapat mengakses dashboard admin, daftar pekerjaan, daftar karyawan, daftar pegawai, dan absensi.
@@ -17,7 +17,7 @@
    - Dapat mengakses dashboard pegawai, daftar pekerjaan, dan absensi.
    - Pegawai dapat menyelesaikan tugas yang diberikan dan melakukan absensi.
 
-## Fitur Aplikasi
+## Fitur Website
 - Registrasi akun
 - Login dan Logout
 - Menambah data pegawai
