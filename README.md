@@ -64,3 +64,60 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+TASK
+>>>> Sidebar-hide-visible
+>>>> data-divisi delete masih ada data-divisi-karyawan
+>>>> belum pake profi img
+>>>> fitur presensi
+
+==== PERUSAHAAN ====
+---- Auth ----
+login : 
+	1.bg-img
+register :
+	1.bg-img
+	1.form-validation
+
+---- Divisi ----
+Divisi : 
+	1.search
+
+---- Karyawan ----
+Karyawan : 
+	1.search
+	3.divisi still id
+Tambah karyawan : 
+	1.form-validation
+Edit karyawan : 
+	1.set value
+	2.form-validation
+Ganti password karyawan : 
+	1.form-validation
+
+---- Presensi ----
+-
+
+---- Pengaturan ----
+pengaturan edit profile : 
+	1. form-validation
+pengaturan ganti password :
+	1. form-validation
+
+
+
+==== KARYAWAN ====
+---- Auth ----
+login :
+	1.bg-img
+
+---- Presensi ----
+-
+
+---- Pengaturan ----
+Edit Profil :
+	1. form-validation
+	2. set-value
+Ganti Password :
+	1. form-validation
+
