@@ -9,26 +9,34 @@
 <body>
     <section class="h-screen flex flex-col justify-center lg:flex-row">
 
-        <div class="text-center lg:basis-1/2 lg:bg-auto" style="background-image: url(./app/img/background.png)">
+        <div class="text-center lg:basis-1/2 lg:bg-auto" style="background-image: url({{asset('/storage/images/background.png')}});background-repeat: no-repeat;background-size: cover;">
             <h1 class="font-medium text-5xl text-Neutral/09 lg:text-start lg:mt-5 lg:ml-10">Job-Monitoring</h1>
         </div>
     
-        {{-- form login --}}
+        {{--content form login --}}
         <div class="flex flex-col justify-center mt-20 mx-10 lg:basis-1/2 lg:mt-0 lg:mx-0 lg:px-20">
+
             <div class="text-center lg:text-start">
                 <h1 class="font-bold text-4xl text-Neutral/08">Login Karyawan</h1>
             </div>
+
             <div class="mt-5 lg:mt-2">
                 <p class="font-normal text-xs text-Neutral/07"> <b class="text-Neutral/05 text-lg">*</b>Untuk akun karyawan dibuat atau didaftarkan oleh perusahaan, anda tidak bisa membuat akun karyawan sendiri</p>
             </div>
+
             <div class="mt-5 lg:px-20">
 
-                @if (session('gagal'))
-                <div class="bg-Neutral/04 rounded">
-                    <p class="font-medium text-sm text-Neutral/08 py-2 mx-3 mb-1">{{ session('gagal') }}</p>
+                {{-- alert form-validation --}}
+                @if(session('gagal'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-md relative " role="alert">
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                        <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+                    </span>
+                    <span class="block sm:inline">{{ session('gagal') }}</span>
                 </div>
                 @endif
 
+                {{-- form login --}}
                 <form action="{{ route("karyawan.login.submit") }}" method="POST">
                     @csrf
                     <div>
@@ -52,7 +60,9 @@
                         </a>
                     </div>
                 </form> 
+
             </div> 
+            
         </div>
 
     </section>

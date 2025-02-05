@@ -75,7 +75,7 @@
                 <div class="mx-5">
                     <ul>
                         <li class="py-2 flex items-center">
-                            <img src="./img/profile.png" alt="profile">
+                            <img class="rounded-full" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; ">
                             <div class="flex flex-col">
                                 <span class="uppercase font-medium text-sm mx-3">{{ Auth::user()->name }}</span>
                                 <span class="font-normal text-xs mx-3">Admin</span>
@@ -94,10 +94,10 @@
                 
                 <div class="mx-5">
                     <button id="buttonHide" class="flex items-center">      
-                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {{-- <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="0.5" width="40" height="40" rx="4" fill="#525252"/>
                             <path d="M24.9 25.8001L20.3 21.2001C20.2 21.1001 20.1294 20.9917 20.088 20.8751C20.046 20.7584 20.025 20.6334 20.025 20.5001C20.025 20.3667 20.046 20.2417 20.088 20.1251C20.1294 20.0084 20.2 19.9001 20.3 19.8001L24.9 15.2001C25.0834 15.0167 25.3124 14.9207 25.587 14.9121C25.8624 14.9041 26.1 15.0001 26.3 15.2001C26.4834 15.3834 26.575 15.6167 26.575 15.9001C26.575 16.1834 26.4834 16.4167 26.3 16.6001L22.425 20.5001L26.3 24.4001C26.4834 24.5834 26.579 24.8124 26.587 25.0871C26.5957 25.3624 26.5 25.6001 26.3 25.8001C26.1167 25.9834 25.8834 26.0751 25.6 26.0751C25.3167 26.0751 25.0834 25.9834 24.9 25.8001ZM18.3 25.8001L13.7 21.2001C13.6 21.1001 13.5294 20.9917 13.488 20.8751C13.446 20.7584 13.425 20.6334 13.425 20.5001C13.425 20.3667 13.446 20.2417 13.488 20.1251C13.5294 20.0084 13.6 19.9001 13.7 19.8001L18.3 15.2001C18.4834 15.0167 18.7127 14.9207 18.988 14.9121C19.2627 14.9041 19.5 15.0001 19.7 15.2001C19.8834 15.3834 19.975 15.6167 19.975 15.9001C19.975 16.1834 19.8834 16.4167 19.7 16.6001L15.825 20.5001L19.7 24.4001C19.8834 24.5834 19.9794 24.8124 19.988 25.0871C19.996 25.3624 19.9 25.6001 19.7 25.8001C19.5167 25.9834 19.2834 26.0751 19 26.0751C18.7167 26.0751 18.4834 25.9834 18.3 25.8001Z" fill="#BDBDBD"/>
-                        </svg>
+                        </svg> --}}
                     </button>
                 </div>
 
@@ -109,14 +109,29 @@
                 </div>
 
             </div>
-    
+
             {{-- content jumlah divisi & search --}}
             <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 ">
                 <h1 class="font-bold text-3xl text-center lg:text-start ">Divisi</h1>
 
+                {{-- alert form-validation --}}
+                @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-3xl relative " role="alert">
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                        <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+                    </span>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
                 <div class="flex flex-col items-center mt-6 lg:flex-row lg:justify-between">
 
-                    <div class="bg-Neutral/01 flex flex-row w-full justify-between px-5 py-5 rounded-lg drop-shadow-lg shadow-inner lg:w-1/2 lg:mr-10">
+                    {{-- jumlah divisi --}}
+                    <div class="bg-Neutral/01 flex flex-row w-full justify-between px-5 py-5 rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2 lg:mr-10">
                         
                         <div class="flex flex-row items-center">
                             <svg width="30" height="34" viewBox="0 0 37 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,16 +144,17 @@
                         </div>
 
                         <div>
-                            <button id="tambahDivisibutton" class="font-medium text-sm text-black-500 bg-Neutral/05 hover:bg-stone-300 rounded-md outline-none leading-tight py-3 px-5 lg:px-10" type="button">Tambah Divisi</button>
+                            <button id="tambahDivisibutton" class="font-medium text-sm text-black-500 bg-Neutral/05 hover:bg-stone-300 rounded-3xl outline-none leading-tight py-3 px-5 lg:px-10" type="button">Tambah Divisi</button>
                         </div>
 
                     </div>
                     
+                    {{-- search divisi --}}
                     <div class="w-full mt-5 lg:items-center lg:justify-end lg:w-1/2 lg:mt-0">
                         <form>
-                            <div class="rounded-md drop-shadow-lg shadow-inner flex justify-between">
-                              <input class="w-full rounded-l-md text-ms  px-1 py-2 lg:px-2 lg:py-3 " type="search" id="mySearch" name="mySearch" placeholder="Cari Nama Divisi" />
-                              <button class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-r-md py-2 px-2 lg:px-4 lg:py-3">Cari</button>
+                            <div class="rounded-3xl drop-shadow-lg shadow-inner flex justify-between">
+                              <input class="w-full rounded-l-3xl text-ms   lg:px-2 lg:py-3 " type="search" id="mySearch" name="mySearch" placeholder="Cari Nama Divisi" value="{{ $filterDivisi }}" />
+                              <button type="submit" class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-r-3xl py-2 px-2 lg:px-4 lg:py-3">Cari</button>
                             </div>
                         </form>
                     </div>
@@ -147,9 +163,10 @@
             </div>
     
             {{-- content list divisi --}}
-            <div class="bg-white mx-10 mt-5 mb-10 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10">
+            <div class="bg-white mx-10 mt-5 mb-10 rounded-3xl drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10">
                 <div class="p-5 flex flex-col">
 
+                    {{-- menampilkan data --}}
                     @if($count != 0)
 
                     <table class="text-center">
@@ -184,22 +201,25 @@
                     </table>
 
                     @else
+
                     <div class="flex flex-col w-full items-center justify-center my-20">
-                        <img src="./img/profile_unikom.png" alt="profil">
+                        <img src="{{asset('/storage/images/profile_unikom.png')}}" alt="empty_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
                         <p class="font-normal text-base text-Neutral/08 mt-3 ">Tidak ada data ! </p>
                     </div>
+
                     @endif
                     
                 </div>
             </div>
             
         </section>
+
     </div>
 
     {{-- modal tambah divisi --}}
     <div id="tambahModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen bg-gray-500 bg-opacity-50">
-            <div class="bg-white w-1/2 p-10 rounded shadow-md">
+            <div class="bg-white w-1/2 p-10 rounded-3xl shadow-md">
 
                 <div class="flex justify-end">
                     <button id="tutupTambahModal" class="text-gray-700 hover:text-red-500">
@@ -214,11 +234,11 @@
                 <form action="{{ route('divisi.tambah.submit') }}" method="POST">
                     @csrf
                     <div class="mb-8">
-                        <label for="nama" class="block font-semibold text-base text-Neutral/06">*Divisi</label>
-                        <input type="text" id="nama" name="nama" required class="w-full font-normal text-base text-Neutral/08 border border-black rounded-md outline-none leading-tight py-3 px-2">
+                        <label for="divisi" class="block font-semibold text-base text-Neutral/06">*Divisi</label>
+                        <input type="text" id="divisi" name="divisi" class="w-full font-normal text-base text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
                     </div>
                     <div class="mb-4 flex items-center justify-center">
-                        <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-md outline-none leading-tight py-2">Simpan</button>
+                        <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-2">Simpan</button>
                     </div>
                 </form>
 
@@ -229,7 +249,7 @@
     {{-- modal edit divisi --}}
     <div id="editModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen bg-gray-500 bg-opacity-50">
-            <div class="bg-white w-1/2 p-10 rounded shadow-md">
+            <div class="bg-white w-1/2 p-10 rounded-3xl shadow-md">
 
                 <div class="flex justify-end">
                     <button id="tutupEditModal" class="text-gray-700 hover:text-red-500">
@@ -244,11 +264,11 @@
                 <form id="form-edit-divisi" method="POST">
                     @csrf
                     <div class="mb-8">
-                        <label for="nama" required class="block font-semibold text-base text-Neutral/06">*Divisi</label>
-                        <input id="form-nama-edit" type="text" id="nama" name="nama" class="w-full font-normal text-base text-Neutral/08 border border-black rounded-md outline-none leading-tight py-3 px-2">
+                        <label for="divisi" required class="block font-semibold text-base text-Neutral/06">*Divisi</label>
+                        <input id="form-nama-edit" type="text" id="divisi" name="divisi" class="w-full font-normal text-base text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
                     </div>
                     <div class="mb-4 flex items-center justify-center">
-                        <button id="editButton" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-md outline-none leading-tight py-2" type="submit">Simpan</button>
+                        <button id="editButton" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-2" type="submit">Simpan</button>
                     </div>
                 </form>
                 
@@ -259,7 +279,7 @@
     {{-- modal hapus Divisi --}}
     <div id="hapusModal"  class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen bg-gray-500 bg-opacity-50">
-            <div class="bg-white w-auto p-10 rounded shadow-md">
+            <div class="bg-white w-auto p-10 rounded-3xl shadow-md">
                 <div class="flex flex-col p-4 md:p-5 text-center items-center">
                     
                     <svg class="mx-auto mb-4 text-red-600 w-12 h-12 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -270,9 +290,8 @@
                     
                     <form id="form-hapus-divisi" method="POST">
                         @csrf
-                        <button id="hapusButton" data-modal-hide="popup-modal" type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">Hapus</button>
-                        <button id="tidakHapuButton" data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 mt-3 lg:mt-0 lg:ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Tidak</button>
-                    
+                        <button id="hapusButton" data-modal-hide="popup-modal" type="submit" class="text-white mr-2 bg-Neutral/05 hover:bg-orange-300  font-medium rounded-3xl text-sm inline-flex items-center px-5 py-2.5 text-center">Hapus</button>
+                        <button id="tidakHapuButton" data-modal-hide="popup-modal" type="button" class="text-white ml-2 bg-Neutral/05 hover:bg-orange-300  font-medium rounded-3xl text-sm inline-flex items-center px-5 py-2.5 text-center">Tidak</button>
                     </form>
 
                 </div>

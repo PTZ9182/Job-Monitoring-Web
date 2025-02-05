@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="flex flex-row ">
-        
+       
         {{-- sidebar --}}
         <section class="hidden lg:visible lg:h-screen lg:flex lg:flex-col lg:w-1/5">
 
@@ -70,23 +70,20 @@
     
                 </ul>
                 
-                <div class="border mx-5 mb-2" >
-                  <hr>
-                </div>
+                <div class="border mx-5 mb-2" ><hr></div>
     
                 <div class="mx-5">
                     <ul>
                         <li class="py-2 flex items-center">
-                            <img src="./img/profile.png" alt="profile">
+                            <img class="rounded-full" src="{{asset('/storage/images/'.Auth::user()->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; ">
                             <div class="flex flex-col">
-                                @if (Auth::check())
-                                    <span class="uppercase font-medium text-sm mx-3">{{ Auth::user()->name }}</span>
-                                    <span class="font-normal text-xs mx-3">Admin</span>
-                                @endif
+                                <span class="uppercase font-medium text-sm mx-3">{{ Auth::user()->name }}</span>
+                                <span class="font-normal text-xs mx-3">Admin</span>
                             </div>        
                          </li> 
                     </ul>
                 </div>
+
             </div> 
 
         </section>
@@ -95,66 +92,95 @@
         <section class="bg-Neutral/13 h-auto w-full flex flex-col lg:w-4/5">
 
             <div class="bg-Neutral/01 h-16 flex flex-row justify-between items-center lg:h-20">
+                
                 <div class="mx-5">
                     <a href="#" class="flex items-center">      
-                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {{-- <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="0.5" width="40" height="40" rx="4" fill="#525252"/>
                             <path d="M24.9 25.8001L20.3 21.2001C20.2 21.1001 20.1294 20.9917 20.088 20.8751C20.046 20.7584 20.025 20.6334 20.025 20.5001C20.025 20.3667 20.046 20.2417 20.088 20.1251C20.1294 20.0084 20.2 19.9001 20.3 19.8001L24.9 15.2001C25.0834 15.0167 25.3124 14.9207 25.587 14.9121C25.8624 14.9041 26.1 15.0001 26.3 15.2001C26.4834 15.3834 26.575 15.6167 26.575 15.9001C26.575 16.1834 26.4834 16.4167 26.3 16.6001L22.425 20.5001L26.3 24.4001C26.4834 24.5834 26.579 24.8124 26.587 25.0871C26.5957 25.3624 26.5 25.6001 26.3 25.8001C26.1167 25.9834 25.8834 26.0751 25.6 26.0751C25.3167 26.0751 25.0834 25.9834 24.9 25.8001ZM18.3 25.8001L13.7 21.2001C13.6 21.1001 13.5294 20.9917 13.488 20.8751C13.446 20.7584 13.425 20.6334 13.425 20.5001C13.425 20.3667 13.446 20.2417 13.488 20.1251C13.5294 20.0084 13.6 19.9001 13.7 19.8001L18.3 15.2001C18.4834 15.0167 18.7127 14.9207 18.988 14.9121C19.2627 14.9041 19.5 15.0001 19.7 15.2001C19.8834 15.3834 19.975 15.6167 19.975 15.9001C19.975 16.1834 19.8834 16.4167 19.7 16.6001L15.825 20.5001L19.7 24.4001C19.8834 24.5834 19.9794 24.8124 19.988 25.0871C19.996 25.3624 19.9 25.6001 19.7 25.8001C19.5167 25.9834 19.2834 26.0751 19 26.0751C18.7167 26.0751 18.4834 25.9834 18.3 25.8001Z" fill="#BDBDBD"/>
-                        </svg>
+                        </svg> --}}
                     </a>
                 </div>
+
                 <div class="mx-5">
                     <div class="flex flex-row">
                         <p class="font-normal text-base text-Neutral/08">Welcome </p>
-                        @if (Auth::check())
                         <p class="font-medium text-base text-Neutral/14 ml-1">{{ Auth::user()->name }}</p>
-                        @endif
                     </div>
                 </div>
+
             </div>
     
-            {{-- fitur pengaturan --}}
+            {{-- fitur presensi --}}
             <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 ">
-                <h1 class="font-bold text-4xl text-center lg:text-start ">Presensi</h1>
+                <h1 class="font-bold text-3xl text-center lg:text-start ">Presensi</h1>
 
-                <div class="flex flex-col items-center mt-6 lg:flex-row lg:justify-between">
-                    <div class=" w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                        <a href="#" class="bg-Neutral/15 flex w-full  justify-center px-5 py-5 rounded-lg drop-shadow-lg shadow-inner lg:w-1/2">
-                            <span class="font-medium text-base ml-4">Android Developer</span>
-                         </a>
-                    </div>
-                    
-                    <div class="w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                          <a href="#" class="bg-Neutral/01 hover:bg-Neutral/15 flex w-full justify-center px-5 py-5 rounded-lg drop-shadow-lg shadow-inner lg:w-1/2">
-                            <span class="font-medium text-base ml-4">Website Developer</span>
-                         </a>
+                <div class="mx-20 flex flex-col items-center mt-10 lg:flex-row lg:justify-between">
+                    <div class=" flex flex-row">
+                        <a href="{{ route('presensi.jadwal.show') }}">
+                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/01 hover:bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5" type="button">Pengaturan Jadwal Presensi</button>
+                        </a>
+                        <a href="{{ route('presensi.catatan.show') }}">
+                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/01 hover:bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5 mx-10" type="button">Catatan Presensi</button>
+                        </a>
                     </div>
                 </div>
-            </div>
-    
-            {{-- content presensi --}}    
-            <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-5">
-                <div class="flex flex-col justify-between ">
-                    <h1 class="font-medium text-2xl text-center mb-10">Presensi Android Developer</h1>
-                    <table class="table border-2">
-                        <tr>
-                            <th>Profil</th>
-                            <th>Nama</th>
-                            <th>Tanggal</th>
-                            <th>Presensi</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </table>
+
+                {{-- content presensi --}}
+                <div class="bg-white mx-10 mt-5 rounded-3xl drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10">
+                    <div class="p-5 flex flex-col justify-between text-center ">
+
+                        <div class=" flex items-center justify-center">
+                            <h1 class="font-medium text-2xl text-end mb-10 mt-10 mx-20">{{ $date }}</h1>
+                        </div>
+
+                        {{-- menampilkan data --}}
+                        @if($count != 0)
+
+                        <table>
+                            <tr class="bg-Neutral/05">
+                                <th class="font-medium text-base py-3 px-3">No</th>
+                                <th class="font-medium text-base py-3 px-3">Tanggal</th>
+                                <th class="font-medium text-base py-3 px-3">Profil</th>
+                                <th class="font-medium text-base py-3 px-3">Nama Karyawan</th>
+                                <th class="font-medium text-base py-3 px-3">Jam Masuk</th>
+                                <th class="font-medium text-base py-3 px-3">Jam Keluar</th>
+                                <th class="font-medium text-base py-3 px-3">Foto</th>
+                            </tr>
+
+                            @php $no = 1; $index = 0; $index2 = 0; @endphp
+                            @foreach ($dataId as $item)
+
+                            <tr class="border-2">
+                                <td class="font-normal text-sm py-3 ">{{ $no++ }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->tanggal }}</td>
+                                <td class="font-normal text-sm py-3 flex justify-center"><img class="rounded-full" src="{{asset('/storage/images/'.$dataKaryawan[$index2++]->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; "></td>
+                                <td class="font-normal text-sm py-3 ">{{ $dataKaryawan[$index++]->namaKaryawan }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->waktuMasuk }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->waktuKeluar }}</td>
+                                <td class="font-normal text-sm py-3 ">-</td>
+                            </tr>
+
+                            @endforeach
+
+                        </table>
+
+                        @else
+
+                        <div class="flex flex-col w-full items-center justify-center my-20">
+                            <img src="{{asset('/storage/images/profile_unikom.png')}}" alt="empty_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
+                            <p class="font-normal text-base text-Neutral/08 mt-3 ">Tidak ada data ! </p>
+                        </div>
+                        
+                        @endif
+
+                    </div>
                 </div>
-                <div class="w-full mt-10 flex justify-center">
-                    <a href="#" class="bg-Neutral/05 hover:bg-Neutral/15 px-4 py-2 lg:px-5 lg:py-4 rounded-lg drop-shadow-lg shadow-inner ">
-                      <span class="font-medium text-base  text-Neutral/01">Tambah Presensi</span>
-                   </a>
-              </div>
+
             </div>
-            
+
         </section>
-    </div>
 
+    </div>
 </body>
 </html>

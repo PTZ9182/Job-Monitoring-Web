@@ -57,7 +57,7 @@
                 <div class="mx-5">
                     <ul>
                         <li class="py-2 flex items-center">
-                            <img src="./img/profile.png" alt="profile">
+                            <img class="rounded-full" src="{{asset('/storage/images/'.Auth::guard('karyawan')->user()->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; ">
                             <div class="flex flex-col">
                                 <span class="uppercase font-medium text-sm mx-3">{{ Auth::guard('karyawan')->user()->namaKaryawan }}</span>
                                 <span class="font-normal text-xs mx-3">Karyawan</span>
@@ -77,10 +77,10 @@
                 
                 <div class="mx-5">
                     <button id="buttonHide" class="flex items-center">      
-                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {{-- <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="0.5" width="40" height="40" rx="4" fill="#525252"/>
                             <path d="M24.9 25.8001L20.3 21.2001C20.2 21.1001 20.1294 20.9917 20.088 20.8751C20.046 20.7584 20.025 20.6334 20.025 20.5001C20.025 20.3667 20.046 20.2417 20.088 20.1251C20.1294 20.0084 20.2 19.9001 20.3 19.8001L24.9 15.2001C25.0834 15.0167 25.3124 14.9207 25.587 14.9121C25.8624 14.9041 26.1 15.0001 26.3 15.2001C26.4834 15.3834 26.575 15.6167 26.575 15.9001C26.575 16.1834 26.4834 16.4167 26.3 16.6001L22.425 20.5001L26.3 24.4001C26.4834 24.5834 26.579 24.8124 26.587 25.0871C26.5957 25.3624 26.5 25.6001 26.3 25.8001C26.1167 25.9834 25.8834 26.0751 25.6 26.0751C25.3167 26.0751 25.0834 25.9834 24.9 25.8001ZM18.3 25.8001L13.7 21.2001C13.6 21.1001 13.5294 20.9917 13.488 20.8751C13.446 20.7584 13.425 20.6334 13.425 20.5001C13.425 20.3667 13.446 20.2417 13.488 20.1251C13.5294 20.0084 13.6 19.9001 13.7 19.8001L18.3 15.2001C18.4834 15.0167 18.7127 14.9207 18.988 14.9121C19.2627 14.9041 19.5 15.0001 19.7 15.2001C19.8834 15.3834 19.975 15.6167 19.975 15.9001C19.975 16.1834 19.8834 16.4167 19.7 16.6001L15.825 20.5001L19.7 24.4001C19.8834 24.5834 19.9794 24.8124 19.988 25.0871C19.996 25.3624 19.9 25.6001 19.7 25.8001C19.5167 25.9834 19.2834 26.0751 19 26.0751C18.7167 26.0751 18.4834 25.9834 18.3 25.8001Z" fill="#BDBDBD"/>
-                        </svg>
+                        </svg> --}}
                     </button>
                 </div>
 
@@ -95,36 +95,173 @@
     
             {{-- content waktu presensi --}}
             <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 ">
-                <h1 class="font-bold text-4xl text-center lg:text-start ">Presensi</h1>
+                <h1 class="font-bold text-3xl text-center lg:text-start ">Presensi</h1>
                 
-                <div class="bg-white items-center rounded-lg drop-shadow-lg shadow-inner mt-5">
+                <div class="bg-white items-center rounded-3xl drop-shadow-lg shadow-inner mt-10">
 
-                    <h1 class="font-medium text-xl lg:text-2xl text-center pt-6">01/12/2001</h1>
+                    <h1 class="font-medium text-xl lg:text-2xl text-center pt-6">{{ $date }}</h1>
                     <hr class="border mt-3">
                     <div class="flex flex-col lg:flex-row items-center justify-center">
     
-                        <div class="w-1/2 flex justify-center p-6">
-                            <div class="">
+                        {{-- menampilakn jadwal jam kerja --}}
+                        <div class="w-1/2 flex fl justify-center mb-5 mt-8 lg:m-10 lg:items-start lg:justify-start">
+                            <div class="flex flex-col justify-center items-center lg:flex-row">
+
+                                @if ($kerja == 'kerja')
+
                                 <div>
-                                    <p class="font-medium text-xl lg:text-3xl">07.00 - 16.00</p>
+                                    <p class=" border border-green-700 rounded-3xl bg-green-600 text-Neutral/01 font-medium text-xl py-2 px-5 mb-3 lg:mb-0">Kerja</p>
                                 </div>
+                                <div class="flex flex-col justify-center items-center lg:flex-row">
+                                    <p class="font-medium text-xl mb-2 lg:text-xl ml-5 mr-2 lg:mb-0">Jam Kerja :</p>
+                                    <p class="font-medium text-xl lg:text-xl">{{ $resultJamMasuk }} - {{ $resultJamKeluar }}</p>
+                                </div>
+                                
+                                @else
+
+                                <div>
+                                    <p class=" border border-red-700 rounded-3xl bg-red-600 text-Neutral/01 font-medium text-xl py-2 px-5 mb-3 lg:mb-0">Libur</p>
+                                </div>
+                                <div class="flex flex-col justify-center items-center lg:flex-row">
+                                    <p class="font-medium text-xl mb-2 lg:text-xl ml-5 mr-2 lg:mb-0">Jam Kerja :</p>
+                                    <p class="font-medium text-xl lg:text-xl"> - </p>
+                                </div>
+                                @endif
+                
                             </div>
                         </div>
                         
+                        {{-- button masuk dan keluar presensi --}}
                         <div class="w-1/2 flex justify-center p-6">
                             <div class="flex flex-row">
 
-                                <div class="mx-5">
-                                    <a href="#" class="bg-Neutral/05 hover:bg-orange-300 rounded-lg drop-shadow-lg shadow-inner px-12 py-3">
-                                        <span class="font-medium text-base text-white">Masuk</span>
-                                     </a>
-                                </div>
+                                @if ($kerja == 'kerja')
+
+                                    @if($timerButton)
+                                        @if ($count == 0)
+
+                                            <div class="mx-5">
+                                                <a href="{{ route('karyawan.presensi.masuk.show') }}" class="bg-Neutral/05 hover:bg-orange-300 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                    <span class="font-medium text-base text-white">Masuk</span>
+                                                </a>
+                                            </div>
+
+                                            <div class="mx-5">
+                                                <a href="#" class="bg-Neutral/15  rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                    <span class="font-medium text-base text-white">Keluar</span>
+                                                </a>
+                                            </div>
+
+                                        @else
+
+                                            @if ($selesai == "")
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Masuk</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="mx-5">
+                                                    
+                                                    <form action="{{ route('karyawan.presensi.keluar.submit')}}" method="POST">
+                                                        @csrf
+                                                        <button type="submit"  class="bg-Neutral/05 hover:bg-orange-300 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                            <span class="font-medium text-base text-white">Keluar</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            @else
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Masuk</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15  rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Keluar</span>
+                                                    <button>
+                                                </div>
+
+                                            @endif
+                                            
+                                        @endif
+
+                                    @else
+                                    
+                                        @if ($count == 0)
+
+                                            <div class="mx-5">
+                                                <a href="#" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                    <span class="font-medium text-base text-white">Masuk</span>
+                                                </a>
+                                            </div>
+
+                                            <div class="mx-5">
+                                                <a href="#" class="bg-Neutral/15  rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                    <span class="font-medium text-base text-white">Keluar</span>
+                                                </a>
+                                            </div>
+
+                                        @else
+
+                                            @if ($selesai == "")
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Masuk</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="mx-5">
+                                                    
+                                                    <form action="{{ route('karyawan.presensi.keluar.submit')}}" method="POST">
+                                                        @csrf
+                                                        <button type="submit"  class="bg-Neutral/05 hover:bg-orange-300 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                            <span class="font-medium text-base text-white">Keluar</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            @else
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Masuk</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="mx-5">
+                                                    <button type="button" class="bg-Neutral/15  rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                                        <span class="font-medium text-base text-white">Keluar</span>
+                                                    <button>
+                                                </div>
+
+                                            @endif
+                                        
+                                        @endif
+
+                                    @endif
+
+                                @else
+
+                                    <div class="mx-5">
+                                        <button type="button" class="bg-Neutral/15 rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                            <span class="font-medium text-base text-white">Masuk</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="mx-5">
+                                        <button type="button" class="bg-Neutral/15  rounded-3xl drop-shadow-lg shadow-inner px-12 py-3">
+                                            <span class="font-medium text-base text-white">Keluar</span>
+                                        </button>
+                                    </div>
                                 
-                                <div class="mx-5">
-                                    <a href="#" class="bg-Neutral/05 hover:bg-orange-300 rounded-lg drop-shadow-lg shadow-inner px-12 py-3">
-                                        <span class="font-medium text-base text-white">Keluar</span>
-                                     </a>
-                                </div>
+                                @endif
+
                             </div>
                         </div>
 
@@ -134,24 +271,56 @@
             </div>
     
             {{-- content list presensi --}}
-            <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-5">
-                <div class="flex flex-col justify-between ">
+            <div class="bg-white mx-10 mt-5 rounded-3xl drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10">
+                <div class="p-5 flex flex-col justify-between text-center ">
+
                     <h1 class="font-medium text-2xl text-center mb-10">Catatan</h1>
+
+                    {{-- menampilkan data --}}
+                    @if($count2 != 0)
+
                     <table>
-                        <tr>
-                            <th>Profil</th>
-                            <th>Nama</th>
-                            <th>Tanggal</th>
-                            <th>Jam Kerja</th>
-                            <th>Presensi</th>
+                        <tr class="bg-Neutral/05">
+                            <th class="font-medium text-base py-3 px-3">No</th>
+                            <th class="font-medium text-base py-3 px-3">Tanggal</th>
+                            <th class="font-medium text-base py-3 px-3">Profil</th>
+                            <th class="font-medium text-base py-3 px-3">Nama Karyawan</th>
+                            <th class="font-medium text-base py-3 px-3">Jam Masuk</th>
+                            <th class="font-medium text-base py-3 px-3">Jam Keluar</th>
+                            <th class="font-medium text-base py-3 px-3">Foto</th>
                         </tr>
+
+                        @php $no = 1; @endphp
+                        @foreach ($dataId as $item)
+
+                        <tr class="border-2">
+                            <td class="font-normal text-sm py-3 ">{{ $no++ }}</td>
+                            <td class="font-normal text-sm py-3 ">{{ $item->tanggal }}</td>
+                            <td class="font-normal text-sm py-3 flex justify-center"><img class="rounded-full" src="{{asset('/storage/images/'.Auth::guard('karyawan')->user()->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; "></td>
+                            <td class="font-normal text-sm py-3 ">{{ Auth::guard('karyawan')->user()->namaKaryawan }}</td>
+                            <td class="font-normal text-sm py-3 ">{{ $item->waktuMasuk }}</td>
+                            <td class="font-normal text-sm py-3 ">{{ $item->waktuKeluar }}</td>
+                            <td class="font-normal text-sm py-3 ">-</td>
+                        </tr>
+
+                        @endforeach
+
                     </table>
+
+                    @else
+                    
+                    <div class="flex flex-col w-full items-center justify-center my-20">
+                        <img src="{{asset('/storage/images/profile_unikom.png')}}" alt="empty_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
+                        <p class="font-normal text-base text-Neutral/08 mt-3 ">Tidak ada data ! </p>
+                    </div>
+
+                    @endif
+
                 </div>
-            
             </div>
             
         </section>
-    </div>
 
+    </div>
 </body>
 </html>

@@ -57,7 +57,7 @@
                 <div class="mx-5">
                     <ul>
                         <li class="py-2 flex items-center">
-                            <img src="./img/profile.png" alt="profile">
+                            <img class="rounded-full" src="{{asset('/storage/images/'.Auth::guard('karyawan')->user()->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; ">
                             <div class="flex flex-col">
                                 <span class="uppercase font-medium text-sm mx-3">{{ Auth::guard('karyawan')->user()->namaKaryawan }}</span>
                                 <span class="font-normal text-xs mx-3">Karyawan</span>
@@ -77,10 +77,10 @@
                 
                 <div class="mx-5">
                     <button id="buttonHide" class="flex items-center">      
-                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {{-- <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect y="0.5" width="40" height="40" rx="4" fill="#525252"/>
                             <path d="M24.9 25.8001L20.3 21.2001C20.2 21.1001 20.1294 20.9917 20.088 20.8751C20.046 20.7584 20.025 20.6334 20.025 20.5001C20.025 20.3667 20.046 20.2417 20.088 20.1251C20.1294 20.0084 20.2 19.9001 20.3 19.8001L24.9 15.2001C25.0834 15.0167 25.3124 14.9207 25.587 14.9121C25.8624 14.9041 26.1 15.0001 26.3 15.2001C26.4834 15.3834 26.575 15.6167 26.575 15.9001C26.575 16.1834 26.4834 16.4167 26.3 16.6001L22.425 20.5001L26.3 24.4001C26.4834 24.5834 26.579 24.8124 26.587 25.0871C26.5957 25.3624 26.5 25.6001 26.3 25.8001C26.1167 25.9834 25.8834 26.0751 25.6 26.0751C25.3167 26.0751 25.0834 25.9834 24.9 25.8001ZM18.3 25.8001L13.7 21.2001C13.6 21.1001 13.5294 20.9917 13.488 20.8751C13.446 20.7584 13.425 20.6334 13.425 20.5001C13.425 20.3667 13.446 20.2417 13.488 20.1251C13.5294 20.0084 13.6 19.9001 13.7 19.8001L18.3 15.2001C18.4834 15.0167 18.7127 14.9207 18.988 14.9121C19.2627 14.9041 19.5 15.0001 19.7 15.2001C19.8834 15.3834 19.975 15.6167 19.975 15.9001C19.975 16.1834 19.8834 16.4167 19.7 16.6001L15.825 20.5001L19.7 24.4001C19.8834 24.5834 19.9794 24.8124 19.988 25.0871C19.996 25.3624 19.9 25.6001 19.7 25.8001C19.5167 25.9834 19.2834 26.0751 19 26.0751C18.7167 26.0751 18.4834 25.9834 18.3 25.8001Z" fill="#BDBDBD"/>
-                        </svg>
+                        </svg> --}}
                     </button>
                 </div>
 
@@ -99,13 +99,13 @@
 
                 <div class="flex flex-col items-center mt-6 lg:flex-row lg:justify-between">
                     <div class=" w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                        <a href="{{ Route("karyawan.karyawan.edit.show") }}" class="bg-Neutral/01 hover:bg-Neutral/15 flex w-full  justify-center px-1 py-4 rounded-lg drop-shadow-lg shadow-inner lg:w-1/2">
+                        <a href="{{ Route("karyawan.karyawan.edit.show") }}" class="bg-Neutral/01 hover:bg-Neutral/15 flex w-full  justify-center px-1 py-4 rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2">
                             <span class="font-medium text-sm ml-4">Edit Profil</span>
                          </a>
                     </div>
                     
                     <div class="w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                          <a href="{{ Route("karyawan.karyawan.ganti.password.show") }}" class="bg-Neutral/15  flex w-full justify-center px-1 py-4 rounded-lg drop-shadow-lg shadow-inner lg:w-1/2">
+                          <a href="{{ Route("karyawan.karyawan.ganti.password.show") }}" class="bg-Neutral/15  flex w-full justify-center px-1 py-4 rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2">
                             <span class="font-medium text-sm ml-4">Ganti Password</span>
                          </a>
                     </div>
@@ -114,27 +114,50 @@
             </div>
     
             {{-- form ganti password Karyawan --}}
-    
             <div class="my-10 lg:flex lg:flex-col lg:items-center">
                 <div class=" p-10 mx-5 bg-white rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2 ">
                     <h1 class="font-medium text-2xl text-center">Ganti Password</h1>
 
+                    {{-- alert form-validation --}}
+                    @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-3xl relative " role="alert">
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                            <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+                        </span>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    @if(Session::has('eror'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-3xl relative " role="alert">
+                            <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
+                                <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+                            </span>
+                            <span class="block sm:inline">{{ Session::get('eror') }}</span>
+                        </div>
+                    @endif
+
+                    {{-- form ganti password --}}
                     <form action="{{ route('karyawan.karyawan.ganti.password.submit',Auth::guard('karyawan')->user()->id) }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="passwordlama" class="font-semibold text-sm text-Neutral/06">*Password Lama</label>
-                            <input type="password" id="passwordlama" name="passwordlama" placeholder="" required class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-md outline-none leading-tight py-3 px-2">
+                            <input type="password" id="passwordlama" name="passwordlama" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
                         </div>
                         <div class="mb-3">
                             <label for="passwordbaru1" class="font-semibold text-sm text-Neutral/06">*Password Baru</label>
-                            <input type="password" id="passwordbaru1" name="passwordbaru1" placeholder="" required class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-md outline-none leading-tight py-3 px-2">
+                            <input type="password" id="passwordbaru1" name="passwordbaru1" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
                         </div>
                         <div class="mb-10">
                             <label for="passwordbaru2" class="font-semibold text-sm text-Neutral/06">*Password Baru</label>
-                            <input type="password" id="passwordbaru2" name="passwordbaru2" placeholder="" required class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-md outline-none leading-tight py-3 px-2">
+                            <input type="password" id="passwordbaru2" name="passwordbaru2" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
                         </div>
                         <div class="mb-4 flex items-center justify-center">
-                            <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-md outline-none leading-tight py-3">Simpan</button>
+                            <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-3">Simpan</button>
                         </div>
                     </form>
                     
@@ -142,7 +165,7 @@
             </div>
             
         </section>
+        
     </div>
-
 </body>
 </html>

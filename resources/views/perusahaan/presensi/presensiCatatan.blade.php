@@ -6,10 +6,9 @@
     <title>Job Monitoring</title>
     @vite('resources/css/app.css')
 </head>
-
 <body>
     <div class="flex flex-row ">
-        
+       
         {{-- sidebar --}}
         <section class="hidden lg:visible lg:h-screen lg:flex lg:flex-col lg:w-1/5">
 
@@ -27,7 +26,7 @@
                         </a>
                      </li>
     
-                    <li class="bg-Neutral/11 py-2 mb-2">
+                    <li class="hover:bg-Neutral/11 py-2 mb-2">
                         <a href="{{ Route("karyawan.show") }}" class="flex items-center mx-5">
                             <svg width="27" height="27" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M27.239 22.7673C29.6407 23.1697 32.2879 22.7498 34.1461 21.5075C36.618 19.8627 36.618 17.168 34.1461 15.5232C32.2703 14.2809 29.5881 13.8609 27.1864 14.2808M9.76095 22.7673C7.35925 23.1697 4.71212 22.7498 2.85387 21.5075C0.382044 19.8627 0.382044 17.168 2.85387 15.5232C4.72965 14.2809 7.41184 13.8609 9.81354 14.2808M29.0447 10.0289C28.9395 10.0114 28.8168 10.0114 28.7116 10.0289C26.2924 9.94139 24.364 7.96413 24.364 5.51444C24.364 3.01225 26.38 1 28.8869 1C31.3938 1 33.4098 3.02975 33.4098 5.51444C33.3923 7.96413 31.4639 9.94139 29.0447 10.0289ZM7.95529 10.0289C8.06048 10.0114 8.18319 10.0114 8.28837 10.0289C10.7076 9.94139 12.636 7.96413 12.636 5.51444C12.636 3.01225 10.62 1 8.11307 1C5.60618 1 3.59015 3.02975 3.59015 5.51444C3.60768 7.96413 5.53606 9.94139 7.95529 10.0289ZM18.5263 23.0997C18.4211 23.0822 18.2984 23.0822 18.1932 23.0997C15.774 23.0123 13.8456 21.035 13.8456 18.5853C13.8456 16.0831 15.8616 14.0709 18.3685 14.0709C20.8754 14.0709 22.8914 16.1006 22.8914 18.5853C22.8739 21.035 20.9455 23.0298 18.5263 23.0997ZM13.4249 28.6116C10.953 30.2563 10.953 32.951 13.4249 34.5958C16.2298 36.4681 20.8228 36.4681 23.6277 34.5958C26.0995 32.951 26.0995 30.2563 23.6277 28.6116C20.8403 26.7568 16.2298 26.7568 13.4249 28.6116Z" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -36,7 +35,7 @@
                         </a>
                      </li>
     
-                     <li class="hover:bg-Neutral/11 py-2 mb-2">
+                     <li class="bg-Neutral/11 py-2 mb-2">
                         <a href="{{ Route("presensi.show") }}" class="flex items-center mx-5">
                             <svg width="27" height="29" viewBox="0 0 37 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.2105 1V6.28571M24.9474 1V6.28571M1.92105 13.4919H33.2368M23.7868 36.2381C25.0763 37.3481 26.7711 38 28.6316 38C31.3211 38 33.6605 36.6257 34.9316 34.5819C35.6132 33.5248 36 32.2738 36 30.9524C36 29.1729 35.3 27.5519 34.1579 26.3009M23.7868 36.2381C23.2158 35.78 22.7184 35.2162 22.3316 34.5819C21.65 33.5248 21.2632 32.2738 21.2632 30.9524C21.2632 27.0586 24.5605 23.9048 28.6316 23.9048C30.8421 23.9048 32.8132 24.8385 34.1579 26.3009M23.7868 36.2381H10.2105C3.76316 36.2381 1 32.7143 1 27.4286V12.4524C1 7.16667 3.76316 3.64286 10.2105 3.64286H24.9474C31.3947 3.64286 34.1579 7.16667 34.1579 12.4524V26.3009M25.7579 30.9524L27.5816 32.6966L31.5053 29.2257M17.5706 21.6143H17.5872M10.7527 21.6143H10.7692M10.7527 26.9H10.7692" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -81,7 +80,7 @@
                                 <span class="uppercase font-medium text-sm mx-3">{{ Auth::user()->name }}</span>
                                 <span class="font-normal text-xs mx-3">Admin</span>
                             </div>        
-                        </li> 
+                         </li> 
                     </ul>
                 </div>
 
@@ -112,81 +111,96 @@
 
             </div>
     
-            {{-- content form edit Karyawan --}}
-            <div class="mt-5 lg:mt-14 ">
-                <h1 class="font-bold text-3xl text-center">Edit Karyawan</h1>
-            </div>
-    
-            <div class="my-10 lg:flex lg:flex-col lg:items-center">
-                <div class=" p-10 mx-5 bg-white rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2 ">
+            {{-- fitur presensi --}}
+            <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 mb-10 ">
+                <h1 class="font-bold text-3xl text-center lg:text-start ">Presensi</h1>
 
-                    {{-- alert form-validation --}}
-                    @if ($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-3xl relative " role="alert">
-                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
-                            <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-                        </span>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    
-                    {{-- button ganti password --}}
-                    <div class="mb-4 flex items-end justify-end">
-                        <a href="{{ Route("karyawan.ganti.password.show",$data->id) }}">
-                            <button class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-3" type="button">Ganti Password</button>
+
+                <div class="mx-20 flex flex-col items-center mt-10 lg:flex-row lg:justify-between">
+                    <div class=" flex flex-row">
+                        <a href="{{ route('presensi.jadwal.show') }}">
+                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/01 hover:bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5" type="button">Pengaturan Jadwal Presensi</button>
+                        </a>
+                        <a href="{{ route('presensi.catatan.show') }}">
+                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5 mx-10" type="button">Catatan Presensi</button>
                         </a>
                     </div>
-
-                    {{-- form edit karyawan --}}
-                    <form action="{{ route('karyawan.edit.submit',$data->id) }}" method="post">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="nama" class="block font-semibold text-sm text-Neutral/06">*Nama Karyawan</label>
-                            <input type="text" id="nama" name="nama" value="{{ $data->namaKaryawan }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="tanggal_lahir" class="block font-semibold text-sm text-Neutral/06">*Tanggal Lahir Karyawan</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ $data->tanggalLahir }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="jenis_kelamin" class="block font-semibold text-sm text-Neutral/06">*Jenis Kelamin Karyawan</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                                <option value="laki-laki" <?php if ( $data->jenisKelamin == 'laki-laki') echo 'selected' ?>>Laki-laki</option>
-                                <option value="perempuan" <?php if ( $data->jenisKelamin == 'perempuan') echo 'selected' ?>>Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="alamat" class="block font-semibold text-sm text-Neutral/06">*Alamat Karyawan</label>
-                            <input type="text" id="alamat" name="alamat" value="{{ $data->alamat }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="phone" class="block font-semibold text-sm text-Neutral/06">*No.Handphone Karyawan</label>
-                            <input type="tel" id="phone" name="phone" value="{{ $data->noHp }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="divisi" class="block font-semibold text-sm text-Neutral/06">*Divisi Karyawan</label>
-                            <select id="divisi" name="divisi" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                                @foreach ($dataId as $no=> $dataId)
-                                <option value="{{ $dataId->id }}" <?php if ($data->idDivisi == $dataId->id ) echo 'selected' ?>>{{ $dataId->divisi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-10">
-                            <label class="font-semibold text-sm text-Neutral/06" for="email" for="email">*Email</label>
-                            <input type="email" id="email" name="email" placeholder="" value="{{ $data->email }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4 flex items-center justify-center">
-                            <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-3">Simpan</button>
-                        </div>
-                    </form>
-                    
                 </div>
+
+                {{-- content catatan presensi --}}
+                <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-innerlg:mx-20 lg:mt-10">
+                    <div class="p-5 flex flex-col justify-between text-center ">
+
+                        <div class=" flex items-center justify-center mb-10">
+                            <h1 class="font-medium text-2xl text-end mt-10 mx-20">Catatan Presensi</h1>
+                        </div>
+                        
+                        {{-- filter search & tanggal --}}
+                        <div class="flex items-end justify-end">
+                            <form class="flex">
+                                <div class="flex items-center mb-5 mr-5">
+                                    <label for="namaKaryawan" class="block font-medium mr-2">Karyawan</label>
+                                    <input type="search" id="namaKaryawan" name="namaKaryawan" value="{{ $filterKaryawan }}" placeholder="Cari Karyawan" class="font-normal text-sm text-Neutral/08 border rounded-3xl outline-none leading-tight py-3 px-5">
+                                </div>
+
+                                <div class="flex items-center mb-5 mr-5">
+                                    <label for="tanggal" class="block font-medium mr-2">Tanggal</label>
+                                    <input type="date" id="tanggal" name="tanggal" value="{{ $filterDate }}" class="font-normal text-sm text-Neutral/08 border rounded-3xl outline-none leading-tight py-3 px-5">
+                                </div>
+                                <div class="flex items-center mb-5 mr-5">
+                                    <button type="submit" class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-3xl py-2 px-2 lg:px-6 lg:py-3">Cari</button>
+                                </div>
+                            </form>
+                            <a href="{{ route('presensi.catatan.show') }}" class="flex items-center mb-5 mr-5"> 
+                                <button type="reset" name="reset" class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-3xl py-2 px-2 lg:px-6 lg:py-3">Reset</button>
+                            </a>
+                        </div>
+
+                        {{-- tampilkan data --}}
+                        @if($count != 0)
+
+                        <table>
+                            <tr class="bg-Neutral/05">
+                                <th class="font-medium text-base py-3 px-3">No</th>
+                                <th class="font-medium text-base py-3 px-3">Tanggal</th>
+                                <th class="font-medium text-base py-3 px-3">Profil</th>
+                                <th class="font-medium text-base py-3 px-3">Nama Karyawan</th>
+                                <th class="font-medium text-base py-3 px-3">Jam Masuk</th>
+                                <th class="font-medium text-base py-3 px-3">Jam Keluar</th>
+                                <th class="font-medium text-base py-3 px-3">Foto</th>
+                            </tr>
+
+                            @php $no = 1; $index = 0; $index2 = 0; @endphp
+                            @foreach ($dataId as $item)
+
+                            <tr class="border-2">
+                                <td class="font-normal text-sm py-3 ">{{ $no++ }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->tanggal }}</td>
+                                <td class="font-normal text-sm py-3 flex justify-center"><img class="rounded-full" src="{{asset('/storage/images/'.$dataKaryawan[$index2++]->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; "></td>
+                                <td class="font-normal text-sm py-3 ">{{ $dataKaryawan[$index++]->namaKaryawan }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->waktuMasuk }}</td>
+                                <td class="font-normal text-sm py-3 ">{{ $item->waktuKeluar }}</td>
+                                <td class="font-normal text-sm py-3 ">-</td>
+                            </tr>
+
+                            @endforeach
+
+                        </table>
+
+                        @else
+
+                        <div class="flex flex-col w-full items-center justify-center my-20">
+                            <img src="{{asset('/storage/images/profile_unikom.png')}}" alt="empty_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
+                            <p class="font-normal text-base text-Neutral/08 mt-3 ">Tidak ada data ! </p>
+                        </div>
+                        
+                        @endif
+
+                    </div>
+                </div>
+
             </div>
-            
+
         </section>
 
     </div>

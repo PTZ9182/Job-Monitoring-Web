@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('tanggalLahir');
             $table->string('alamat');
             $table->string('noHp');
-            $table->string('email')->unique();
+            $table->string('image')->default('user.png');
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamps();

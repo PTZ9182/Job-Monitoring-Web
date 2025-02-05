@@ -39,6 +39,9 @@ Route::post('/karyawan/delete{id}',[PerusahaanController::class, 'deletekaryawan
 
 // Presensi
 Route::get('/presensi',[PerusahaanController::class, 'showPresensi'])->name('presensi.show');
+Route::get('/presensi/jadwal',[PerusahaanController::class, 'showPresensiJadwal'])->name('presensi.jadwal.show');
+Route::post('/presensi/jadwal/edit/submit',[PerusahaanController::class, 'submitPresensiJadwalEdit'])->name('presensi.jadwal.edit.submit');
+Route::get('/presensi/catatan',[PerusahaanController::class, 'showPresensiCatatan'])->name('presensi.catatan.show');
 
 // Pengaturan
 Route::get('/pengaturan/editprofil',[PerusahaanController::class, 'showPengaturanEditProfil'])->name('pengaturan.edit.profil.show');
@@ -60,6 +63,9 @@ Route::middleware('karyawan')->group(function(){
 // KARYAWAN CONTROLLER
 // Karyawan Presensi
 Route::get('/karyawan/presensi', [KaryawanController::class, 'showKaryawanPresensi'])->name('karyawan.presensi.show');
+Route::get('/karyawan/presensi/masuk', [KaryawanController::class, 'showKaryawanPresensiMasuk'])->name('karyawan.presensi.masuk.show');
+Route::post('/karyawan/presensi/masuk/submit', [KaryawanController::class, 'submitKaryawanPresensiMasuk'])->name('karyawan.presensi.masuk.submit');
+Route::post('/karyawan/presensi/keluar/submit', [KaryawanController::class, 'submitKaryawanPresensiKeluar'])->name('karyawan.presensi.keluar.submit');
 
 // Karayawan Pengaturan
 Route::get('/karyawan/karyawan/edit', [KaryawanController::class, 'showKaryawanKaryawanEdit'])->name('karyawan.karyawan.edit.show');

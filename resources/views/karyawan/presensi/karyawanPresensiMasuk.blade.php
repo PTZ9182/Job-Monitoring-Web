@@ -17,7 +17,7 @@
 
                 <ul class="mt-6">
 
-                    <li class="hover:bg-Neutral/11 py-2 mb-2">
+                    <li class="bg-Neutral/11 py-2 mb-2">
                         <a href="{{ Route("karyawan.presensi.show") }}" class="flex items-center mx-5">
                             <svg width="27" height="29" viewBox="0 0 37 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.2105 1V6.28571M24.9474 1V6.28571M1.92105 13.4919H33.2368M23.7868 36.2381C25.0763 37.3481 26.7711 38 28.6316 38C31.3211 38 33.6605 36.6257 34.9316 34.5819C35.6132 33.5248 36 32.2738 36 30.9524C36 29.1729 35.3 27.5519 34.1579 26.3009M23.7868 36.2381C23.2158 35.78 22.7184 35.2162 22.3316 34.5819C21.65 33.5248 21.2632 32.2738 21.2632 30.9524C21.2632 27.0586 24.5605 23.9048 28.6316 23.9048C30.8421 23.9048 32.8132 24.8385 34.1579 26.3009M23.7868 36.2381H10.2105C3.76316 36.2381 1 32.7143 1 27.4286V12.4524C1 7.16667 3.76316 3.64286 10.2105 3.64286H24.9474C31.3947 3.64286 34.1579 7.16667 34.1579 12.4524V26.3009M25.7579 30.9524L27.5816 32.6966L31.5053 29.2257M17.5706 21.6143H17.5872M10.7527 21.6143H10.7692M10.7527 26.9H10.7692" stroke="#BDBDBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -26,7 +26,7 @@
                         </a>
                     </li>
     
-                    <li class="bg-Neutral/11 py-2 mb-2">
+                    <li class="hover:bg-Neutral/11 py-2 mb-2">
                         <a href="{{ route("karyawan.karyawan.edit.show") }}" class="flex items-center mx-5">
                             <svg width="29" height="29" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.4908 25.221C22.5544 25.221 25.038 22.6596 25.038 19.5C25.038 16.3404 22.5544 13.779 19.4908 13.779C16.4271 13.779 13.9435 16.3404 13.9435 19.5C13.9435 22.6596 16.4271 25.221 19.4908 25.221Z" stroke="#BDBDBD" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -93,93 +93,28 @@
 
             </div>
     
-            {{-- fitur pengaturan --}}
             <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 ">
-                <h1 class="font-bold text-3xl text-center lg:text-start ">Pengaturan</h1>
-
-                <div class="flex flex-col items-center mt-6 lg:flex-row lg:justify-between">
-                    <div class=" w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                        <a href="{{ Route("karyawan.karyawan.edit.show") }}" class="bg-Neutral/15  flex w-full  justify-center px-1 py-4 rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2">
-                            <span class="font-medium text-sm ml-4">Edit Profil</span>
-                         </a>
-                    </div>
-                    
-                    <div class="w-full mt-5 lg:flex lg:items-center lg:justify-center lg:w-1/2 lg:mt-0">
-                          <a href="{{ Route("karyawan.karyawan.ganti.password.show") }}" class="bg-Neutral/01 hover:bg-Neutral/15  flex w-full justify-center px-1 py-4 rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2">
-                            <span class="font-medium text-sm ml-4">Ganti Password</span>
-                         </a>
-                    </div>
-                </div>
-
+                <h1 class="font-bold text-3xl text-center lg:text-start ">Presensi</h1>
             </div>
-    
-            {{--content form edit profil --}}    
-            <div class="my-10 lg:flex lg:flex-col lg:items-center">
-                <div class=" p-10 mx-5 bg-white rounded-3xl drop-shadow-lg shadow-inner lg:w-1/2 ">
-                    <h1 class="font-medium text-2xl text-center mb-5">Edit Profil</h1>
-
-                    {{-- alert form-validation --}}
-                    @if ($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-3 rounded-3xl relative " role="alert">
-                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.style.display='none';">
-                            <svg class="fill-current h-6 w-6 text-red-500"  role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" ><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
-                        </span>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+            
+            {{-- content list presensi --}}
+            <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-5">
+                <div class="flex flex-col justify-between ">
                     
-                    {{-- form edit profil --}}    
-                    <div class="flex w-full items-center justify-center">
-                        <img class="rounded-full" src="{{asset('/storage/images/'.Auth::guard('karyawan')->user()->image)}}" alt="profile_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
-                    </div>
+                    <h1 class="font-medium text-2xl text-center mb-10">Deteksi Wajah</h1>
 
-                     <form action="{{ route('karyawan.karyawan.edit.submit',Auth::guard('karyawan')->user()->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('karyawan.presensi.masuk.submit')}}" method="POST">
                         @csrf
-                        <div class="mb-4">
-                            <label for="image" class="block font-semibold text-sm text-Neutral/06">Foto Profil</label>
-                            <input type="file" id="image" name="image" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-5">
-                        </div>
-                        <div class="mb-4">
-                            <label for="nama" class="block font-semibold text-sm text-Neutral/06">*Nama Karyawan</label>
-                            <input type="text" id="nama" name="nama" value="{{ Auth::guard('karyawan')->user()->namaKaryawan }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="tanggal_lahir" class="block font-semibold text-sm text-Neutral/06">*Tanggal Lahir Karyawan</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" value="{{ Auth::guard('karyawan')->user()->tanggalLahir }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="jenis_kelamin" class="block font-semibold text-sm text-Neutral/06">*Jenis Kelamin Karyawan</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                                <option value="laki-laki" <?php if (Auth::guard('karyawan')->user()->jenisKelamin == 'laki-laki') echo 'selected' ?>>Laki-laki</option>
-                                <option value="perempuan" <?php if (Auth::guard('karyawan')->user()->jenisKelamin == 'perempuan') echo 'selected' ?>>Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label for="alamat" class="block font-semibold text-sm text-Neutral/06">*Alamat Karyawan</label>
-                            <input type="text" id="alamat" name="alamat" value="{{ Auth::guard('karyawan')->user()->alamat }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="phone" class="block font-semibold text-sm text-Neutral/06">*No.Handphone Karyawan</label>
-                            <input type="tel" id="phone" name="phone"  value="{{ Auth::guard('karyawan')->user()->noHp }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-10">
-                            <label class="font-semibold text-sm text-Neutral/06" for="email" for="email">*Email</label>
-                            <input type="email" id="email" name="email" value="{{ Auth::guard('karyawan')->user()->email }}" class="w-full font-normal text-sm text-Neutral/08 border border-black rounded-3xl outline-none leading-tight py-3 px-2" required>
-                        </div>
-                        <div class="mb-4 flex items-center justify-center">
-                            <button  type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-3xl outline-none leading-tight py-3">Simpan</button>
+                        <div class="mt-10 flex items-center justify-center">
+                            <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-md outline-none leading-tight py-3">Masuk</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
             
         </section>
-
     </div>
+
 </body>
 </html>
