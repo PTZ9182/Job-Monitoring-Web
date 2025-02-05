@@ -66,6 +66,11 @@ class KaryawanController extends Controller
                     $jamSelesai = $value->selasaKeluar;
                     $resultJamMasuk = substr($jamMasuk,0,-3);
                     $resultJamKeluar = substr($jamSelesai,0,-3);
+                    if($time >= $value->selasaMasuk && $time <= $value->selasaKeluar){
+                        $timerButton = true;
+                    } else {
+                        $timerButton = false;
+                    }
                 }
                 elseif($day == 'Rabu'){
                     $kerja = $value->rabuKerja;
@@ -85,6 +90,11 @@ class KaryawanController extends Controller
                     $jamSelesai = $value->kamisKeluar;
                     $resultJamMasuk = substr($jamMasuk,0,-3);
                     $resultJamKeluar = substr($jamSelesai,0,-3);
+                    if($time >= $value->kamisMasuk && $time <= $value->kamisKeluar){
+                        $timerButton = true;
+                    } else {
+                        $timerButton = false;
+                    }
                 }
                 elseif($day == 'Jumat'){
                     $kerja = $value->jumatKerja;
@@ -92,6 +102,11 @@ class KaryawanController extends Controller
                     $jamSelesai = $value->jumatKeluar;
                     $resultJamMasuk = substr($jamMasuk,0,-3);
                     $resultJamKeluar = substr($jamSelesai,0,-3);
+                    if($time >= $value->jumatMasuk && $time <= $value->jumatKeluar){
+                        $timerButton = true;
+                    } else {
+                        $timerButton = false;
+                    }
                 }
                 elseif($day == 'Sabtu'){
                     $kerja = $value->sabtuKerja;
@@ -99,6 +114,11 @@ class KaryawanController extends Controller
                     $jamSelesai = $value->sabtuKeluar;
                     $resultJamMasuk = substr($jamMasuk,0,-3);
                     $resultJamKeluar = substr($jamSelesai,0,-3);
+                    if($time >= $value->sabtuMasuk && $time <= $value->sabtuKeluar){
+                        $timerButton = true;
+                    } else {
+                        $timerButton = false;
+                    }
                 }
                 elseif($day == 'Minggu'){
                     $kerja = $value->mingguKerja;
@@ -106,6 +126,11 @@ class KaryawanController extends Controller
                     $jamSelesai = $value->mingguKeluar;
                     $resultJamMasuk = substr($jamMasuk,0,-3);
                     $resultJamKeluar = substr($jamSelesai,0,-3);
+                    if($time >= $value->mingguMasuk && $time <= $value->mingguKeluar){
+                        $timerButton = true;
+                    } else {
+                        $timerButton = false;
+                    }
                 }
             }
         }
