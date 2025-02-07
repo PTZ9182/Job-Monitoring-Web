@@ -19,6 +19,8 @@ return new class extends Migration
             $table->time('waktuMasuk')->nullable();
             $table->time('waktuKeluar')->nullable();
             $table->string('foto')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->timestamps();
         });
     }

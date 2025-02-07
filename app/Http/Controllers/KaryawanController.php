@@ -165,7 +165,7 @@ class KaryawanController extends Controller
     function showKaryawanPresensiMasuk(){
         return view('karyawan.presensi.karyawanPresensiMasuk');
     }
-    function submitKaryawanPresensiMasuk(){
+    function submitKaryawanPresensiMasuk(Request $request){
         $date = Carbon::now()->isoFormat('YYYY-MM-DD');
         $time = Carbon::now()->isoFormat('HH:mm:ss');
         $data = new PresensiKaryawan();
@@ -173,6 +173,8 @@ class KaryawanController extends Controller
         $data->idKaryawan = Auth::guard('karyawan')->user()->id;
         $data->tanggal = $date;
         $data->waktuMasuk = $time;
+        $data->latitude = $request->latitude;
+        $data->longitude = $request->longitude;
         $data->save();
 
         return redirect()->route('karyawan.presensi.show');
@@ -196,7 +198,10 @@ class KaryawanController extends Controller
 
         return redirect()->route('karyawan.presensi.show');
     }
-
+    function showKaryawanPresensiDetail($id){
+        $data = PresensiKaryawan::find($id);
+        return view('karyawan.presensi.karyawanPresensiDetail',compact('data'));
+    }
     // Pengaturan
     function showKaryawanKaryawanEdit(){
         return view('karyawan.pengaturan.karyawanEditProfil');

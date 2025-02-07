@@ -6,7 +6,7 @@
     <title>Job Monitoring</title>
     @vite('resources/css/app.css')
 </head>
-<body onload="getLocation();">
+<body">
     <div class="flex flex-row ">
         
         {{-- sidebar --}}
@@ -98,56 +98,47 @@
             </div>
             
             {{-- content list presensi --}}
-            <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-5">
-                <div class="flex flex-col justify-between ">
+            <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-5 mb-10">
+                <div class="flex flex-col ">
                     
-                    <h1 class="font-medium text-2xl text-center mb-5">Deteksi Wajah</h1>
-                    <div class="flex">
-                        <p class="font-medium text-center">Latitude :</h1>
-                        <p class="latitude font-medium text-center ml-2">-</h1>
+                    <h1 class="font-medium text-2xl text-center mb-5">Detail Presensi</h1>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Nama Karyawan :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ Auth::guard('karyawan')->user()->namaKaryawan }}</h1>
                     </div>
-                    <div class="flex">
-                        <p class="font-medium text-center">Longitude :</h1>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Tanggal :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->tanggal }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Waktu Masuk :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->waktuMasuk }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Waktu Keluar :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->waktuKeluar }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Foto :</h1>
                         <p class="longitude font-medium text-center ml-2">-</h1>
                     </div>
-
-                    <form action="{{ route('karyawan.presensi.masuk.submit')}}" method="POST" class="myForm">
-                        @csrf
-                        <div class="mt-10 flex items-center justify-center">
-                            <input type="text" name="latitude" value="" class="border hidden">
-                            <input type="text" name="longitude" value="" class="border hidden">
-                            <button type="submit" class="w-auto px-10 font-medium text-sm text-Neutral/01 bg-Neutral/05 hover:bg-orange-300 rounded-md outline-none leading-tight py-3">Masuk</button>
-                        </div>
-                    </form>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Latitude :</h1>
+                        <p class="latitude font-medium text-center ml-2">{{ $data->latitude }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Longitude :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->longitude }}</h1>
+                    </div>
+                    <div class="flex mb-3 w-[50%] h-96">
+                        <iframe src="https://www.google.com/maps?q={{ $data->latitude }},{{ $data->longitude }}&h1=es;z=14&output=embed" style="width:100%"></iframe>
+                    </div>
 
                 </div>
             </div>
             
         </section>
     </div>
-
-    <script type="text/javascript">
-        function getLocation() {
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(showPosition,showError);
-            }
-        }
-        function showPosition(position){
-            document.querySelector('.latitude').innerHTML = position.coords.latitude;
-            document.querySelector('.longitude').innerHTML = position.coords.longitude;
-            document.querySelector('.myForm input[name = "latitude"]').value = position.coords.latitude;
-            document.querySelector('.myForm input[name = "longitude"]').value = position.coords.longitude;
-        }
-        function showError(error){
-            switch(error.code){
-                case error.PERMISSION_DENIED:
-                    alert("Kamu harus mengaktifkan Geolocation untuk mengisi presensi");
-                    location.reload();
-                    break;
-            }
-        }
-        
-    </script>
 
 </body>
 </html>

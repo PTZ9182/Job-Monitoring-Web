@@ -439,6 +439,11 @@ class PerusahaanController extends Controller
         }
         return view('perusahaan.presensi.presensiCatatan',compact("dataId","count","dataKaryawan","filterDate",'filterKaryawan'));
     }
+    function showPresensiDetail($id){
+        $data = PresensiKaryawan::find($id);
+        $dataK = Karyawan::find($data->idKaryawan);
+        return view('perusahaan.presensi.PresensiDetail',compact('data',('dataK')));
+    }
 
     // PENGATURAN
     function showPengaturanEditProfil(){

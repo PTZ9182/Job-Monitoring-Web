@@ -110,109 +110,45 @@
                 </div>
 
             </div>
-    
-            {{-- fitur presensi --}}
-            <div class="mx-10 mt-5 lg:mx-20 lg:mt-14 mb-10 ">
-                <h1 class="font-bold text-3xl text-center lg:text-start ">Presensi</h1>
 
-
-                <div class="mx-20 flex flex-col items-center mt-10 lg:flex-row lg:justify-between">
-                    <div class=" flex flex-row">
-                        <a href="{{ route('presensi.jadwal.show') }}">
-                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/01 hover:bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5" type="button">Pengaturan Jadwal Presensi</button>
-                        </a>
-                        <a href="{{ route('presensi.catatan.show') }}">
-                            <button class="w-auto px-10 font-medium text-ms  bg-Neutral/15 drop-shadow-md rounded-3xl outline-none leading-tight py-5 mx-10" type="button">Catatan Presensi</button>
-                        </a>
+            {{-- content list presensi --}}
+            <div class="bg-white mx-10 mt-5 rounded-3xl drop-shadow-lg shadow-inner lg:mx-20 lg:mt-10 py-5 px-10 mb-10">
+                <div class="flex flex-col ">
+                    
+                    <h1 class="font-medium text-2xl text-center mb-5">Detail Presensi</h1>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Nama Karyawan :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $dataK->namaKaryawan }}</h1>
                     </div>
-                </div>
-
-                {{-- content catatan presensi --}}
-                <div class="bg-white mx-10 mt-5 rounded-md drop-shadow-lg shadow-innerlg:mx-20 lg:mt-10">
-                    <div class="p-5 flex flex-col justify-between text-center ">
-
-                        <div class=" flex items-center justify-center mb-10">
-                            <h1 class="font-medium text-2xl text-end mt-10 mx-20">Catatan Presensi</h1>
-                        </div>
-                        
-                        {{-- filter search & tanggal --}}
-                        <div class="flex items-end justify-end">
-                            <form class="flex">
-                                <div class="flex items-center mb-5 mr-5">
-                                    <label for="namaKaryawan" class="block font-medium mr-2">Karyawan</label>
-                                    <input type="search" id="namaKaryawan" name="namaKaryawan" value="{{ $filterKaryawan }}" placeholder="Cari Karyawan" class="font-normal text-sm text-Neutral/08 border rounded-3xl outline-none leading-tight py-3 px-5">
-                                </div>
-
-                                <div class="flex items-center mb-5 mr-5">
-                                    <label for="tanggal" class="block font-medium mr-2">Tanggal</label>
-                                    <input type="date" id="tanggal" name="tanggal" value="{{ $filterDate }}" class="font-normal text-sm text-Neutral/08 border rounded-3xl outline-none leading-tight py-3 px-5">
-                                </div>
-                                <div class="flex items-center mb-5 mr-5">
-                                    <button type="submit" class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-3xl py-2 px-2 lg:px-6 lg:py-3">Cari</button>
-                                </div>
-                            </form>
-                            <a href="{{ route('presensi.catatan.show') }}" class="flex items-center mb-5 mr-5"> 
-                                <button type="reset" name="reset" class="text-ms  hover:bg-stone-300 bg-Neutral/05 rounded-3xl py-2 px-2 lg:px-6 lg:py-3">Reset</button>
-                            </a>
-                        </div>
-
-                        {{-- tampilkan data --}}
-                        @if($count != 0)
-
-                        <table>
-                            <tr class="bg-Neutral/05">
-                                <th class="font-medium text-base py-3 px-3">No</th>
-                                <th class="font-medium text-base py-3 px-3">Profil</th>
-                                <th class="font-medium text-base py-3 px-3">Tanggal</th>
-                                <th class="font-medium text-base py-3 px-3">Nama Karyawan</th>
-                                <th class="font-medium text-base py-3 px-3">Jam Masuk</th>
-                                <th class="font-medium text-base py-3 px-3">Jam Keluar</th>
-                                <th class="font-medium text-base py-3 px-3">Detail</th>
-                            </tr>
-
-                            @php $no = 1; $index = 0; $index2 = 0; @endphp
-                            @foreach ($dataId as $item)
-
-                            <tr class="border-2">
-                                <td class="font-normal text-sm py-3 ">{{ $no++ }}</td>
-                                <td class="font-normal text-sm py-3 flex justify-center"><img class="rounded-full" src="{{asset('/storage/images/'.$dataKaryawan[$index2++]->image)}}" alt="profile_image" style="width: 70px;height: 70px; padding: 10px; margin: 0px; "></td>
-                                <td class="font-normal text-sm py-3 ">{{ $item->tanggal }}</td>
-                                <td class="font-normal text-sm py-3 ">{{ $dataKaryawan[$index++]->namaKaryawan }}</td>
-                                <td class="font-normal text-sm py-3 ">{{ $item->waktuMasuk }}</td>
-                                <td class="font-normal text-sm py-3 ">{{ $item->waktuKeluar }}</td>
-                                <td class="font-normal text-sm py-3 ">
-                                    <a href="{{ Route("presensi.detail.show",$item->id) }}">
-                                        <button type="button" class="items-center mx-2 border px-4 py-1 rounded hover:bg-Neutral/11 lg:mx-5">
-                                            <svg fill="#000000" width="30" height="30" viewBox="0 0 64 64" id="Layer_1_1_" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <g>
-                                                <path d="M36,21c0-2.206-1.794-4-4-4s-4,1.794-4,4s1.794,4,4,4S36,23.206,36,21z M30,21c0-1.103,0.897-2,2-2s2,0.897,2,2   s-0.897,2-2,2S30,22.103,30,21z"/>
-                                                <path d="M27,41v6h10v-6h-2V27h-8v6h2v8H27z M29,31v-2h4v14h2v2h-6v-2h2V31H29z"/>
-                                                <path d="M32,1C14.907,1,1,14.907,1,32s13.907,31,31,31s31-13.907,31-31S49.093,1,32,1z M32,61C16.009,61,3,47.991,3,32   S16.009,3,32,3s29,13.009,29,29S47.991,61,32,61z"/>
-                                                <path d="M32,7c-5.236,0-10.254,1.607-14.512,4.649l1.162,1.628C22.567,10.479,27.184,9,32,9c12.682,0,23,10.318,23,23   c0,4.816-1.479,9.433-4.277,13.35l1.628,1.162C55.393,42.254,57,37.236,57,32C57,18.215,45.785,7,32,7z"/>                                       
-                                                <path d="M32,55C19.318,55,9,44.682,9,32c0-4.817,1.479-9.433,4.277-13.35l-1.627-1.162C8.608,21.746,7,26.764,7,32   c0,13.785,11.215,25,25,25c5.236,0,10.254-1.607,14.512-4.649l-1.162-1.628C41.433,53.521,36.816,55,32,55z"/>   
-                                                </g>   
-                                            </svg>
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-
-                            @endforeach
-
-                        </table>
-
-                        @else
-
-                        <div class="flex flex-col w-full items-center justify-center my-20">
-                            <img src="{{asset('/storage/images/profile_unikom.png')}}" alt="empty_image" style="width: 180px;height: 180px; padding: 10px; margin: 0px; ">
-                            <p class="font-normal text-base text-Neutral/08 mt-3 ">Tidak ada data ! </p>
-                        </div>
-                        
-                        @endif
-
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Tanggal :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->tanggal }}</h1>
                     </div>
-                </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Waktu Masuk :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->waktuMasuk }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Waktu Keluar :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->waktuKeluar }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Foto :</h1>
+                        <p class="longitude font-medium text-center ml-2">-</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Latitude :</h1>
+                        <p class="latitude font-medium text-center ml-2">{{ $data->latitude }}</h1>
+                    </div>
+                    <div class="flex mb-3">
+                        <p class="font-medium text-center">Longitude :</h1>
+                        <p class="longitude font-medium text-center ml-2">{{ $data->longitude }}</h1>
+                    </div>
+                    <div class="flex mb-3 w-[50%] h-96">
+                        <iframe src="https://www.google.com/maps?q={{ $data->latitude }},{{ $data->longitude }}&h1=es;z=14&output=embed" style="width:100%"></iframe>
+                    </div>
 
+                </div>
             </div>
 
         </section>
